@@ -1,4 +1,8 @@
 class AdminsController < ApplicationController
+  def index
+    @admin = User.where(role: 1)
+  end
+
   def new
     @admin = User.new
   end
