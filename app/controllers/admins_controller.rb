@@ -35,6 +35,16 @@ class AdminsController < ApplicationController
     end
   end
 
+  def destroy
+    @admin = User.find(params[:id])
+    if @admin.destory
+      redirect_to admins_path, notice: "ユーザの情報を削除しました"
+    else
+      flash.now[:alert] = "ユーザの情報削除に失敗しました"
+      render :show
+    end
+  end
+
   private
 
     def admin_params
