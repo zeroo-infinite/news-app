@@ -21,6 +21,20 @@ class AdminsController < ApplicationController
     end
   end
 
+  def edit
+    @admin = User.find(params[:id])
+  end
+
+  def update
+    @admin = User.find(params[:id])
+    if @admin.update(admin_params)
+      redirect_to admin_path, notice: "ユーザの情報を更新しました"
+    else
+      flash.now[:danger] = "ユーザの情報更新に失敗しました"
+      render :edit
+    end
+  end
+
   private
 
     def admin_params
