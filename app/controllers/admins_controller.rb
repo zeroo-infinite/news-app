@@ -3,6 +3,10 @@ class AdminsController < ApplicationController
     @admin = User.where(role: 1)
   end
 
+  def show
+    @admin = User.find(params[:id])
+  end
+
   def new
     @admin = User.new
   end
