@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_04_02_082808) do
     t.string "email", limit: 191, null: false
     t.string "password_digest", null: false
     t.integer "role", limit: 2, default: 0, null: false
-    t.string "remember_token"
+    t.string "remember_digest"
     t.datetime "remember_created_at"
     t.datetime "delete_at"
     t.datetime "created_at", precision: 6, null: false
