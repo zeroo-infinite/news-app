@@ -1,0 +1,14 @@
+h1 ログインフォーム
+
+= form_with scope: :session, url: login_path, method: :post do |f|
+  .form-group
+    = f.label :email, "メールアドレス"
+    = f.text_field :email, class: "form-control"
+  .form-gorup
+    = f.label :password, "パスワード"
+    = f.password_field :password, class: "form-control"
+  .form_check
+    = f.label :remember_me, class: "form-check-label" do
+      = f.check_box :remember_me, class: "form-check-input"
+      | ログイン状態を保持する
+  = f.submit "ログインする", class: "btn btn-primary"
