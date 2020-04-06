@@ -1,0 +1,10 @@
+.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+  .navbar-brand News_app
+
+  ul.navbar-nav.ml-auto
+    - if logged_in?
+      li.nav-item = link_to "ログアウト", logout_path, method: :delete, class: "nav-link"
+      li.nav-item = link_to "マイページ", admin_path(current_user), class: "nav-link"
+    - else
+      li.nav-item = link_to "ユーザ登録", new_admin_path, class: "nav-link"
+      li.nav-item = link_to "ログイン", login_path, class: "nav-link"
