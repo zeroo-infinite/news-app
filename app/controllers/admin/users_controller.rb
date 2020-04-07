@@ -1,10 +1,10 @@
-class AdminsController < ApplicationController
+class Admin::UsersController < ApplicationController
   def index
-    @admin_users = User.where(role: 1)
+    @admin_users = User.with_role(:admin)
   end
 
   def show
-    @admin_user = User.find(params[:id])
+    @admin_user = User.with_role(:admin).find(params[:id])
   end
 
   def new
@@ -22,11 +22,11 @@ class AdminsController < ApplicationController
   end
 
   def edit
-    @admin_user = User.find(params[:id])
+    @admin_user = User.with_role(:admin).find(params[:id])
   end
 
   def update
-    @admin_user = User.find(params[:id])
+    @admin_user = User.with_role(:admin).find(params[:id])
     if @admin_user.update(admin_params)
       redirect_to admin_path, notice: "ユーザの情報を更新しました"
     else
@@ -36,7 +36,7 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-    @admin_user = User.find(params[:id])
+    @admin_user = User.with_role(:admin).find(params[:id])
     if @admin_user.destory
       redirect_to admins_path, notice: "ユーザの情報を削除しました"
     else
