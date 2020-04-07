@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
 
   # 渡された文字列をハッシュ化して返す
+  # min_cost == trueになるのはテスト時
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :  BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
