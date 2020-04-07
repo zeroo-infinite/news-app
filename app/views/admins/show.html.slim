@@ -4,15 +4,15 @@ table
   tbody
     tr
       th = "メールアドレス"
-      td = @admin.email
+      td = @admin_user.email
     tr
       th = "管理者権限"
-      td = @admin.role == 1 ? "あり" : "なし"
+      td = @admin_user.role == 1 ? "あり" : "なし"
     tr
       th = "作成日"
-      td = @admin.created_at
+      td = @admin_user.created_at
     tr
       th = "更新日"
-      td = @admin.updated_at
-= link_to "編集", edit_admin_path(@admin), class: 'btn btn-primary mr-3'
-= link_to "削除", admin_path(@admin), method: :delete, data: { confirm: "ユーザ#{@admin.email}を削除します。よろしいですか？" }, class: "btn btn-danger"
+      td = @admin_user.updated_at
+= link_to "編集", edit_admin_path(@admin_user), class: 'btn btn-primary mr-3'
+= link_to "削除", admin_path(@admin_user), method: :delete, data: { confirm: "ユーザ#{@admin_user.email}を削除します。よろしいですか？" }, class: "btn btn-danger"
