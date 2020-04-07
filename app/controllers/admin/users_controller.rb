@@ -14,7 +14,7 @@ class Admin::UsersController < ApplicationController
   def create
     @admin_user = User.new(admin_params)
     if @admin_user.save
-      redirect_to admins_path, notice: "ユーザを登録しました"
+      redirect_to admin_users_path, notice: "ユーザを登録しました"
     else
       flash.now[:danger] = "ユーザの登録に失敗しました"
       render :new
