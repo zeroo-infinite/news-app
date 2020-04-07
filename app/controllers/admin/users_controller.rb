@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :ensure_admin_user
+
   def index
     @admin_users = User.with_role(:admin)
   end
@@ -37,12 +39,8 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @admin_user = User.with_role(:admin).find(params[:id])
-    if @admin_user.destory
-      redirect_to admins_path, notice: "ユーザの情報を削除しました"
-    else
-      flash.now[:alert] = "ユーザの情報削除に失敗しました"
-      render :show
-    end
+    @admin_user.destroy!
+    redirect_to admin_users_path, notice: "ユーザの情報を削除しました"
   end
 
   private
