@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  acts_as_paranoid
   attr_accessor :remember_token
   has_secure_password
   validates :email, presence: true, length: { maximum: 191 }, uniqueness: true
