@@ -1,0 +1,9 @@
+h1 記事一覧
+
+.news-container
+  - @articles.each do |article|
+    .news-card
+      = link_to article_path(article), class: "news-link" do
+        .news-title = article.title
+
+= paginate @articles
