@@ -1,0 +1,4 @@
+h1 記事作成
+
+= form_with model: @article, url: admin_articles_path, method: :post do |f|
+  = render partial: "form", locals: { f: f }

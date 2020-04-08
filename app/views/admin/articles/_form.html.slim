@@ -1,0 +1,10 @@
+.form-group
+  = f.label :title, "タイトル"
+  = f.text_field :title, class: "form-control", size: "50*50"
+.form-group
+  = f.label :content, "本文"
+  = f.text_area :content, class: "form-control"
+.form-group
+  = f.label :slug, "URLに表示する文字"
+  = f.text_field :slug, class: "form-control", placeholder: "page/<表示したい文字>", size: "30*30"
+= f.submit "作成", class: "btn btn-primary"

@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, length: { maximum: 191 }, uniqueness: true
   validates :password_digest, presence: true
+  has_many :articles
 
   # 渡された文字列をハッシュ化して返す
   # min_cost == trueになるのはテスト時
