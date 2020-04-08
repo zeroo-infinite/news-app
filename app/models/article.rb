@@ -3,4 +3,7 @@ class Article < ApplicationRecord
   validates :content, presence: true
   validates :slug, presence: true, uniqueness: true
   belongs_to :user
+  paginates_per 10
+
+  scope :order_created_at_desc, -> { order(created_at: :desc) }
 end
