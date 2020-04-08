@@ -1,0 +1,4 @@
+h1 記事編集
+
+= form_with model: @article, url: admin_article_path do |f|
+  = render partial: "form", locals: { f: f }

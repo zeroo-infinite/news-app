@@ -13,6 +13,20 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to article_params(@article), notice: "記事を更新しました"
+    else
+      flash.now[:danger] = "記事の更新に失敗しました"
+      render :edit
+    end
+  end
+
   private
 
     def article_params
