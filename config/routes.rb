@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "admins#index"
+  root to: "admin/users#index"
   namespace :admin do
     resources :users
     get "login", to: "sessions#new"
