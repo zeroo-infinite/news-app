@@ -1,11 +1,11 @@
 .form-group
-  = f.label :email, "メールアドレス"
+  = f.label :email, User.human_attribute_name(:email)
   = f.text_field :email, class: "form-control"
 .form-group
-  = f.label :password, "パスワード"
+  = f.label :password, User.human_attribute_name(:password)
   = f.password_field :password, class: "form-control"
 .form-group
-  = f.label :password_confirmation, "パスワード(確認)"
+  = f.label :password_confirmation, User.human_attribute_name(:password_confirmation)
   = f.password_field :password_confirmation, class: "form-control"
 .form-check
   = f.label :role, class: "form-check-label" do

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   acts_as_paranoid
   extend Enumerize
-  enumerize :role, in: { user: 0, admin: 1 }, default: :user, predicates: true, scope: true
+  enumerize :role, in: { general: 0, admin: 1 }, default: :general, predicates: true, scope: true
   attr_accessor :remember_token
   has_secure_password
   validates :email, presence: true, length: { maximum: 191 }, uniqueness: true
