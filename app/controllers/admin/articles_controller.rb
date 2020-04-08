@@ -27,6 +27,16 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
+  def destroy
+    @article = Article.find(params[:id])
+    if @article.destroy
+      redirect_to articles_path, notice: "記事を削除しました"
+    else
+      flash.now[:danger] = "記事の削除に失敗しました"
+      render :edit
+    end
+  end
+
   private
 
     def article_params
