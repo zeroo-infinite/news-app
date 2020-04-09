@@ -17,6 +17,25 @@ class Admin::CategoriesController < ApplicationController
     end
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to admin_categories_path, notice: "カテゴリーを編集しました"
+    else
+      flash.now[:danger] = "カテゴリーを編集できませんでした"
+      render :edit
+    end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy!
+    redirect_to admin_categories_path, notice: "カテゴリー「#{@category.name}」を削除しました"
+  end
 
   private
 
