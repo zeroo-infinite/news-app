@@ -6,9 +6,10 @@ class CreateUser < ActiveRecord::Migration[6.0]
       t.integer :role, null: false, default: 0, limit: 2
       t.string :remember_digest
       t.datetime :remember_created_at
-      t.datetime :delete_at
+      t.datetime :deleted_at
       t.timestamps
     end
     add_index :users, :email, :unique => true
+    add_index :users, :deleted_at
   end
 end

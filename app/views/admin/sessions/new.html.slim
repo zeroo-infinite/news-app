@@ -1,11 +1,11 @@
 h1 ログインフォーム
 
-= form_with scope: :session, url: login_path, method: :post do |f|
+= form_with scope: :session, url: admin_login_path, method: :post do |f|
   .form-group
-    = f.label :email, "メールアドレス"
+    = f.label :email, User.human_attribute_name(:email)
     = f.text_field :email, class: "form-control"
   .form-gorup
-    = f.label :password, "パスワード"
+    = f.label :password, User.human_attribute_name(:password)
     = f.password_field :password, class: "form-control"
   .form_check
     = f.label :remember_me, class: "form-check-label" do

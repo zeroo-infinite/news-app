@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class Admin::SessionsController < Admin::BaseController
   def new
   end
 
@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in(user)
       params[:session][:remember_me] == "1" ? remember(user) : forget(user)
-      redirect_to admins_path
+      redirect_to admin_users_path
     else
       flash[:danger] = "ログインに失敗しました"
       render :new

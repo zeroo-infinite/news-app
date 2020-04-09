@@ -18,9 +18,10 @@ ActiveRecord::Schema.define(version: 2020_04_02_082808) do
     t.integer "role", limit: 2, default: 0, null: false
     t.string "remember_digest"
     t.datetime "remember_created_at"
-    t.datetime "delete_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
