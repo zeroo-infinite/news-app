@@ -3,6 +3,9 @@
 
   ul.navbar-nav.ml-auto
     li.nav-item = link_to "記事一覧", articles_path, class: "nav-link"
+    - if current_user&.admin?
+      li.nav-item = link_to "タグ一覧", admin_categories_path, class: "nav-link"
+      li.nav-item = link_to "記事作成", new_admin_article_path, class: "nav-link"
     - if logged_in?
       li.nav-item = link_to "ログアウト", logout_path, method: :delete, class: "nav-link"
       li.nav-item = link_to "マイページ", admin_user_path(current_user), class: "nav-link"
