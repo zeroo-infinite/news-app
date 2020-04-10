@@ -5,12 +5,8 @@ class CreateCategories < ActiveRecord::Migration[6.0]
       t.integer :pv_count, null: false, default: 0
       t.timestamps
     end
-
-    create_table :article_categorizations do |t|
-      t.references :article, foreign_key: true
-      t.references :category, foreign_key: true
-      t.timestamps
-    end
     add_index :categories, :name, :unique => true
+
+    add_reference :articles, :category, foreign_key: true
   end
 end

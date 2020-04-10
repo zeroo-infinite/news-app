@@ -12,23 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_04_08_083144) do
 
-  create_table "article_categorizations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "article_id"
-    t.bigint "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_article_categorizations_on_article_id"
-    t.index ["category_id"], name: "index_article_categorizations_on_category_id"
-  end
-
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.string "title", limit: 100, null: false
     t.string "content", null: false
     t.string "slug", null: false
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -54,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_04_08_083144) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "article_categorizations", "articles"
-  add_foreign_key "article_categorizations", "categories"
+  add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
 end
