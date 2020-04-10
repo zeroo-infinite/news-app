@@ -1,5 +1,5 @@
-class Admin::UsersController < ApplicationController
-  before_action :ensure_admin_user
+class Admin::UsersController < Admin::BaseController
+  before_action :authorize_admin_user
 
   def index
     @admin_users = User.with_role(:admin)

@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  root to: "admins#index"
+  root to: "admin/users#index"
   namespace :admin do
     resources :users
     resources :articles, except: [:index, :show]
     resources :categories, except: [:show]
+    get "login", to: "sessions#new"
+    post "login", to: "sessions#create"
+    delete "logout", to: "sessions#destroy"
   end
   resources :articles, only: :index
   get "pages/:slug", to: "articles#show", as: :article
   get "pages/:category_name/:slug", to: "articles#show", as: :category_article
-  get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
 end
