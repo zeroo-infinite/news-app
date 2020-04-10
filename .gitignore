@@ -19,6 +19,7 @@ vendor/bundle/*
 
 /public/assets
 .byebug_history
+/public/images
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
