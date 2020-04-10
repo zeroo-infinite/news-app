@@ -5,9 +5,11 @@ h1 記事一覧
     .news-card
       - if article.category.nil?
         = link_to article_path(article.slug), class: "news-link" do
+          .news-image = image_tag(article.image_url.to_s)
           .news-title = article.title
       - else
         = link_to category_article_path(slug: article.slug, category_name: article.category.name), class: "news-link" do
+          .news-image = image_tag(article.image_url.to_s)
           .news-title = article.title
 
 = paginate @articles
