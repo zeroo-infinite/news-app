@@ -1,5 +1,13 @@
 module Admin
   class ArticleFilesController < ApplicationController
+    def index
+      @article_files = ArticleFile.order(created_at: :desc).page(params[:page])
+    end
+
+    def show
+      @article_file = ArticleFile.find_by(slug: params[:slug])
+    end
+
     def new
       @article_file = ArticleFile.new
     end
