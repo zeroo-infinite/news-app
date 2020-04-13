@@ -4,6 +4,10 @@ class CreateArticleFiles < ActiveRecord::Migration[6.0]
       t.string :name, null: false, limit: 100
       t.string :slug, null: false, limit: 100
       t.string :file_url, null: false
+      t.string :file_type, null: false, limit: 50
+      t.integer :width
+      t.integer :height
+      t.integer :file_size, null: false
       t.timestamps
     end
     add_index :article_files, :slug, :unique => true

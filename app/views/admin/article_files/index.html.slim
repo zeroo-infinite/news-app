@@ -2,8 +2,18 @@ h1 メディアライブラリ
 
 - @article_files.each do |article_file|
   .file-card
-    = link_to admin_file_path(article_file.slug), class: "file-link" do
-      .file = image_tag(article_file.file_url.to_s, :size => "200x200")
-      .file-name = article_file.name
+    - if MiniMagick::Image.new(article_file.file_url.file.file).valid?
+      = link_to admin_file_path(article_file.slug), class: "file-link" do
+        .file = image_tag(article_file.file_url.to_s, :size => "200x200")
+        .file-name = article_file.name
+    - elsif article_file.file_type.include?("pdf")
+      = link_to admin_file_path(article_file.slug), class: "file-link" do
+        p pdfファイル
+        .file-name = article_file.name
+    - elsif article_file.file_type.include?("mp3")
+      = link_to admin_file_path(article_file.slug), class: "file-link" do
+        p 音声ファイル
+        .file-name = article_file.name
+
 
 = paginate @article_files
