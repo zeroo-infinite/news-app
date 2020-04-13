@@ -21,6 +21,24 @@ module Admin
       end
     end
 
+    def edit
+      @article_file = ArticleFile.find(params[:id])
+    end
+
+    def update
+      @article_file = ArticleFile.find(params[:id])
+      if @article_file.update(article_file_params)
+        redirect_to admin_file_path(@article_file.slug), notice: "再アップロードしました"
+      else
+        render :edit
+      end
+    end
+
+    def destroy
+      @article_file = ArticleFile.find(params[:id])
+      @article_file.destroy!
+      redirect_to admin_article_files_path, notice: "ファイルを削除しました"
+    end
 
     private
 
