@@ -14,7 +14,4 @@
       = f.collection_select :category_id, categories, :id, :name, { include_blank: "選択してください" }, class: "form-control"
     - else
       = f.collection_select :category_id, categories, :id, :name, { include_blank: "選択してください", selected: article.category.id }, class: "form-control"
-  .form-group
-    = f.label :image_url, "写真"
-    = f.file_field :image_url, class: "form-control"
   = f.submit "作成", class: "btn btn-primary"

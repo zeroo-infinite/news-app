@@ -5,7 +5,6 @@ class Article < ApplicationRecord
   belongs_to :category, optional: true
   belongs_to :user
   paginates_per 10
-  mount_uploader :image_url, ImageUploader
 
   scope :order_created_at_desc, -> { order(created_at: :desc) }
 end
