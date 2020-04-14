@@ -10,8 +10,7 @@ class ArticleFile < ApplicationRecord
     self.file_size = File.stat(self.file_url.file.file).size
     image = MiniMagick::Image.new(self.file_url.file.file)
     if image.valid?
-      self.width = image[:width]
-      self.height = image[:height]
+      self.data = { "width": image[:width], "height": image[:height] }
     end
   end
 end

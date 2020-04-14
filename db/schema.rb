@@ -17,8 +17,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_143151) do
     t.string "slug", limit: 100, null: false
     t.string "file_url", null: false
     t.string "file_type", limit: 50, null: false
-    t.integer "width"
-    t.integer "height"
+    t.json "data"
     t.integer "file_size", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
