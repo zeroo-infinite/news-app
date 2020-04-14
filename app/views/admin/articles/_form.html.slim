@@ -1,4 +1,9 @@
-= form_with model: article, url: url do |f|
+- if article.errors.any?
+  ul#error_explanation
+    - article.errors.full_messages.each do |message|
+      li = message
+
+= form_with model: article, url: url, local: true do |f|
   .form-group
     = f.label :title, "タイトル"
     = f.text_field :title, class: "form-control", size: "50*50"
@@ -11,7 +16,7 @@
   .form-group
     = f.label :category_id, "カテゴリー"
     - if article.category.nil?
-      = f.collection_select :category_id, categories, :id, :name, { include_blank: "選択してください" }, class: "form-control"
+      = f.collection_select :category_id, categories || [], :id, :name, { include_blank: "選択してください" }, class: "form-control"
     - else
-      = f.collection_select :category_id, categories, :id, :name, { include_blank: "選択してください", selected: article.category.id }, class: "form-control"
+      = f.collection_select :category_id, categories || [], :id, :name, { include_blank: "選択してください", selected: article.category.id }, class: "form-control"
   = f.submit "作成", class: "btn btn-primary"

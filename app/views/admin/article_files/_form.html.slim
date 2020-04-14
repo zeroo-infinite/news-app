@@ -1,4 +1,9 @@
-= form_with model: article_file, url: url do |f|
+- if article_file.errors.any?
+  ul#error_explanation
+    - article_file.errors.full_messages.each do |message|
+      li = message
+
+= form_with model: article_file, url: url, local: true do |f|
   - if article_file.persisted? && article_file.file_url?
     = image_tag(article_file.file_url.to_s, :size => "200x200")
   .form-group

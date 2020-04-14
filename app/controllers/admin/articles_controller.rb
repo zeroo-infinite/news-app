@@ -10,7 +10,6 @@ module Admin
       if @article.save
         redirect_to articles_path, notice: "記事を作成しました"
       else
-        flash.now[:danger] = "記事の作成に失敗しました"
         render :new
       end
     end
