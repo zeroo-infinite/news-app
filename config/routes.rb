@@ -4,8 +4,7 @@ Rails.application.routes.draw do
     resources :users
     resources :articles, except: [:index, :show]
     resources :categories, except: [:show]
-    resources :article_files, except: [:show]
-    get "files/:slug", to: "article_files#show", as: :file
+    resources :article_files
     get "login", to: "sessions#new"
     post "login", to: "sessions#create"
     delete "logout", to: "sessions#destroy"

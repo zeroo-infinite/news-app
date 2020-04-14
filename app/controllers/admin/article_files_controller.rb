@@ -5,7 +5,7 @@ module Admin
     end
 
     def show
-      @article_file = ArticleFile.find_by(slug: params[:slug])
+      @article_file = ArticleFile.find(params[:id])
     end
 
     def new

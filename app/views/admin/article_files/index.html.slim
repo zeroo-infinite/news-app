@@ -3,15 +3,15 @@ h1 メディアライブラリ
 - @article_files.each do |article_file|
   .file-card
     - if is_image?(article_file)
-      = link_to admin_file_path(article_file.slug), class: "file-link" do
+      = link_to admin_article_file_path(article_file), class: "file-link" do
         .file = image_tag(article_file.file_url.to_s, :size => "200x200")
         .file-name = article_file.name
     - elsif article_file.file_type.include?("pdf")
-      = link_to admin_file_path(article_file.slug), class: "file-link" do
+      = link_to admin_article_file_path(article_file), class: "file-link" do
         p pdfファイル
         .file-name = article_file.name
     - elsif article_file.file_type.include?("mp3")
-      = link_to admin_file_path(article_file.slug), class: "file-link" do
+      = link_to admin_article_file_path(article_file), class: "file-link" do
         p 音声ファイル
         .file-name = article_file.name
 
