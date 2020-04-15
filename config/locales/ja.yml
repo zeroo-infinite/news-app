@@ -5,6 +5,10 @@ ja:
       role:
         general: "一般ユーザー"
         admin: "管理者"
+    article:
+      status:
+        draft: "下書き"
+        release: "公開済"
   activerecord:
     errors:
       messages:
