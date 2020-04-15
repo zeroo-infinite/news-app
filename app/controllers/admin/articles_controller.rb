@@ -2,7 +2,6 @@ module Admin
   class ArticlesController < Admin::BaseController
     def new
       @article = Article.new
-      @categories = Category.all
     end
 
     def create
@@ -16,7 +15,6 @@ module Admin
 
     def edit
       @article = Article.find(params[:id])
-      @categories = Category.all
     end
 
     def update
@@ -41,7 +39,7 @@ module Admin
     private
 
       def article_params
-        params.require(:article).permit(:title, :content, :slug, :image_url, :category_id)
+        params.require(:article).permit(:title, :content, :slug, :image_url, :category_id, :status, :published_at)
       end
   end
 end
