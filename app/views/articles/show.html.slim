@@ -1,8 +1,11 @@
-h1 記事本文
+- if @article.published_at?
+  h1 記事本文(公開日：#{@article.published_at})
+- else
+  h1 記事本文
 
 .contents-area
   .news
-    .news-title = @article.title
+    .news-title = @article.title()
     .news-content = @article.content
 - if current_user&.admin?
   = link_to "記事を編集", edit_admin_article_path(@article), class: 'btn btn-primary mr-3'

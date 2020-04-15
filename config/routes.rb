@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: "admin/users#index"
   namespace :admin do
     resources :users
-    resources :articles, except: [:index, :show]
+    resources :articles, except: [:show]
     resources :categories, except: [:show]
     resources :article_files
     get "login", to: "sessions#new"

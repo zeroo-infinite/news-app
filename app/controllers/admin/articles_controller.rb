@@ -1,5 +1,11 @@
 module Admin
   class ArticlesController < Admin::BaseController
+    def index
+      @form = Admin::Articles::SearchForm.new(search_params)
+      articles = Article.all
+      @articles = @form.search(articles ,params[:page])
+    end
+
     def new
       @article = Article.new
     end
@@ -40,6 +46,10 @@ module Admin
 
       def article_params
         params.require(:article).permit(:title, :content, :slug, :image_url, :category_id, :status, :published_at)
+      end
+
+      def search_params
+        params.fetch(:admin_articles_search_form, {}).permit(:status, :title, :category_id)
       end
   end
 end
