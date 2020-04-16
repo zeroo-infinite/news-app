@@ -1,7 +1,8 @@
 module Admin
   class ArticleFilesController < ApplicationController
     def index
-      @article_files = ArticleFile.order(created_at: :desc).page(params[:page])
+      @form = Admin::ArticleFiles::SearchForm.new(search_params)
+      @article_files = @form.search(params[:page])
     end
 
     def show
@@ -47,6 +48,10 @@ module Admin
 
     def article_file_params
       params.require(:article_file).permit(:name, :slug, :file_url)
+    end
+
+    def search_params
+      params.fetch(:admin_article_files_search_form, {}).permit(:name, :file_type, :min_file_size, :max_file_size)
     end
   end
 end
