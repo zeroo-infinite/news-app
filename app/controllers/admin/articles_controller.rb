@@ -2,8 +2,7 @@ module Admin
   class ArticlesController < Admin::BaseController
     def index
       @form = Admin::Articles::SearchForm.new(search_params)
-      articles = Article.all
-      @articles = @form.search(articles ,params[:page])
+      @articles = @form.search(params[:page])
     end
 
     def new
@@ -49,7 +48,7 @@ module Admin
       end
 
       def search_params
-        params.fetch(:admin_articles_search_form, {}).permit(:status, :title, :category_id, :released_at)
+        params.fetch(:admin_articles_search_form, {}).permit(:status, :title, :category_id, :max_released_at, :min_released_at)
       end
   end
 end

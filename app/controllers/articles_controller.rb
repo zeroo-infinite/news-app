@@ -1,8 +1,7 @@
 class ArticlesController < ApplicationController
   def index
     @form = Admin::Articles::SearchForm.new(search_params)
-    articles = Article.includes(:category).released_articles
-    @articles = @form.search(articles, params[:page])
+    @articles = @form.search(params[:page])
   end
 
   def show
