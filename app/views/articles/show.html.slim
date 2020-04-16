@@ -1,5 +1,5 @@
-- if @article.published_at?
-  h1 記事本文(公開日：#{@article.published_at})
+- if @article.released_at?
+  h1 記事本文(公開日：#{ l @article.released_at, formats: :default})
 - else
   h1 記事本文
 

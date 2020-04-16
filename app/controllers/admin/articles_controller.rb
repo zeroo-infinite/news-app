@@ -45,11 +45,11 @@ module Admin
     private
 
       def article_params
-        params.require(:article).permit(:title, :content, :slug, :image_url, :category_id, :status, :published_at)
+        params.require(:article).permit(:title, :content, :slug, :image_url, :category_id, :status, :released_at)
       end
 
       def search_params
-        params.fetch(:admin_articles_search_form, {}).permit(:status, :title, :category_id)
+        params.fetch(:admin_articles_search_form, {}).permit(:status, :title, :category_id, :released_at)
       end
   end
 end

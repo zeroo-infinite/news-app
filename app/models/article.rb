@@ -9,5 +9,5 @@ class Article < ApplicationRecord
   enumerize :status, in: { draft: 0, release: 1 }, default: :draft, predicates: true, scope: true
 
   scope :order_created_at_desc, -> { order(created_at: :desc) }
-  scope :released_articles, -> { with_status(:release).where("published_at <= ?", Time.zone.now) }
+  scope :released_articles, -> { with_status(:release).where("released_at <= ?", Time.zone.now) }
 end

@@ -26,6 +26,6 @@
     - else
       = f.check_box :status, { checked: true }
   .form-group
-    = f.label :published_at, "公開日"
-    = f.datetime_select :published_at, minute_step: 5, include_blank: true
+    = f.label :released_at, "公開日"
+    = f.datetime_select :released_at, minute_step: 5, include_blank: true
   = f.submit "作成", class: "btn btn-primary"

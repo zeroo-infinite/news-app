@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_082806) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.integer "status", default: 0
-    t.datetime "published_at"
+    t.datetime "released_at"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
