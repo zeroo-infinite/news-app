@@ -1,0 +1,28 @@
+h1 記事一覧(管理者用)
+= form_with model: @form, url: admin_articles_path, method: :get, local: true do |f|
+  .search_box
+    h3 検索フォーム
+    .form-group
+      = f.label :title, "記事のタイトル"
+      = f.text_field :title, class: "form-control"
+    .form-group
+      = f.label :status, "記事の状態"
+      = f.select :status, {"下書き": 0, "公開": 1}, { include_blank: "選択してください" }, class: "form-control"
+    .form-group
+      = f.label :category_id, "カテゴリ"
+      = f.collection_select :category_id, Category.all, :id, :name, { include_blank: "選択してください" }, class: "form-control"
+    .form-group
+      = f.label :released_at, "公開日"
+      = f.date_select :min_released_at, include_blank: "選択してください"
+      | 〜 
+      = f.date_select :max_released_at, include_blank: "選択してください"
+    = f.submit "検索", class: "btn btn-primary"
+
+.news-container
+  - @articles.each do |article|
+    .news-card
+      = link_to article_path(article.slug, article_id: article.id), class: "news-link" do
+        .news-image = image_tag(article.image_url.to_s)
+        .news-title = article.title
+
+= paginate @articles

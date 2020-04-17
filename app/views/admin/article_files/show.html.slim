@@ -1,0 +1,19 @@
+h1 ファイル詳細
+
+.upload-file
+  .file-content
+    - if is_image?(@article_file)
+      .file = image_tag(@article_file.file_url.to_s, :size => "500x400")
+    - elsif @article_file.file_type.include?("pdf")
+      p pdfファイル
+    - elsif @article_file.file_type.include?("mp3")
+      p 音声ファイル
+  .file-info
+    li = "ファイル名：#{@article_file.name}"
+    li = "メディア名：#{@article_file.file_url.identifier}"
+    li = "ファイルタイプ：#{@article_file.file_type}"
+    li = "ファイルサイズ：#{@article_file.file_size/1000.to_f} KB"
+    - if is_image?(@article_file)
+      li = "サイズ(縦 × 横)：#{@article_file.data["height"]} × #{@article_file.data["width"]}"
+  = link_to "ファイルの編集", edit_admin_article_file_path(@article_file), class: 'btn btn-primary mr-3'
+  = link_to "ファイルを削除", admin_article_file_path(@article_file), method: :delete, data: { confirm: "このファイルを削除します。よろしいですか？" }, class: "btn btn-danger"

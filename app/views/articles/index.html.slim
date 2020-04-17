@@ -1,0 +1,25 @@
+h1 記事一覧
+= form_with model: @form, url: articles_path, method: :get, local: true do |f|
+  .search_box
+    h3 検索フォーム
+    .form-group
+      = f.label :title, "記事のタイトル"
+      = f.text_field :title, class: "form-control"
+    .form-group
+      = f.label :category_id, "カテゴリ"
+      = f.collection_select :category_id, Category.all, :id, :name, { include_blank: "選択してください" }, class: "form-control"
+    = f.submit "検索", class: "btn btn-primary"
+
+.news-container
+  - @articles.each do |article|
+    .news-card
+      - if article.category.nil?
+        = link_to article_path(article.slug, article_id: article.id), class: "news-link" do
+          .news-image = image_tag(article.image_url.to_s)
+          .news-title = article.title
+      - else
+        = link_to category_article_path(slug: article.slug, category_name: article.category.name, article_id: article.id), class: "news-link" do
+          .news-image = image_tag(article.image_url.to_s)
+          .news-title = article.title
+
+= paginate @articles

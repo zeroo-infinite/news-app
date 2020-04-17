@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_02_082808) do
+ActiveRecord::Schema.define(version: 2020_04_14_082806) do
+
+  create_table "article_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 100, null: false
+    t.string "slug", limit: 100, null: false
+    t.string "file_url", null: false
+    t.string "file_type", limit: 50, null: false
+    t.json "data"
+    t.integer "file_size", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_article_files_on_slug", unique: true
+  end
+
+  create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", limit: 100, null: false
+    t.string "content", null: false
+    t.string "slug", null: false
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.integer "status", default: 0
+    t.datetime "released_at"
+    t.index ["category_id"], name: "index_articles_on_category_id"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", limit: 191, null: false
+    t.integer "pv_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", limit: 191, null: false
@@ -25,4 +61,6 @@ ActiveRecord::Schema.define(version: 2020_04_02_082808) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "articles", "categories"
+  add_foreign_key "articles", "users"
 end
