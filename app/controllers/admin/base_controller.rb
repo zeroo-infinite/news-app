@@ -1,5 +1,6 @@
 class Admin::BaseController < ApplicationController
   include SessionsHelper
+  layout "admin"
 
   private
 

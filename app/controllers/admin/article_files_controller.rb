@@ -1,5 +1,5 @@
 module Admin
-  class ArticleFilesController < ApplicationController
+  class ArticleFilesController < Admin::BaseController
     def index
       @form = Admin::ArticleFiles::SearchForm.new(search_params)
       @article_files = @form.search(params[:page])
