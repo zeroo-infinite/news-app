@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_082806) do
+ActiveRecord::Schema.define(version: 2020_04_17_094933) do
 
   create_table "article_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -22,6 +22,24 @@ ActiveRecord::Schema.define(version: 2020_04_14_082806) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_article_files_on_slug", unique: true
+  end
+
+  create_table "article_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
+    t.bigint "category_id"
+    t.integer "change_type", null: false
+    t.string "title", limit: 100
+    t.string "content"
+    t.string "slug"
+    t.string "image_url"
+    t.integer "status"
+    t.datetime "released_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_histories_on_article_id"
+    t.index ["category_id"], name: "index_article_histories_on_category_id"
+    t.index ["user_id"], name: "index_article_histories_on_user_id"
   end
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|

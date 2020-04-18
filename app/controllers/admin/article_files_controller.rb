@@ -15,7 +15,7 @@ module Admin
 
     def create
       @article_file = ArticleFile.new(article_file_params)
-      @article_file.set_attributes
+      @article_file.set_file_info
       if @article_file.save
         redirect_to admin_article_files_path, notice: "アップロードしました。"
       else
@@ -30,7 +30,7 @@ module Admin
     def update
       @article_file = ArticleFile.find(params[:id])
       @article_file.attributes = article_file_params
-      @article_file.set_attributes
+      @article_file.set_file_info
       if @article_file.save
         redirect_to admin_file_path(@article_file.slug), notice: "再アップロードしました"
       else
