@@ -1,0 +1,12 @@
+- if @article.released_at?
+  h1 記事本文(公開日：#{ l @article.released_at, formats: :default})
+- else
+  h1 記事本文
+
+.contents-area
+  .news
+    .news-title = @article.title()
+    .news-content = @article.content
+- if current_user&.admin?
+  = link_to "記事を編集", edit_admin_article_path(@article), class: 'btn btn-primary mr-3'
+  = link_to "記事を削除", admin_article_path(@article), method: :delete, data: { confirm: "この記事を削除します。よろしいですか？" }, class: "btn btn-danger"
