@@ -1,8 +1,10 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root to: "admin/users#index"
   namespace :admin do
     resources :users
-    resources :password_resets, only: [:new, :create, :edit, :update]#, param: :reset_token
+    resources :password_resets, only: [:new, :create, :edit, :update]
     resources :articles, except: [:show]
     resources :categories, except: [:show]
     resources :article_files
@@ -13,6 +15,5 @@ Rails.application.routes.draw do
   resources :articles, only: :index
   get "pages/:slug", to: "articles#show", as: :article
   get "pages/:category_name/:slug", to: "articles#show", as: :category_article
-
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount Sidekiq::Web, at: "/sidekiq"
 end

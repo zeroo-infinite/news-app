@@ -1,7 +1,7 @@
 module Admin
   class PasswordResetsController < Admin::BaseController
     skip_before_action :authorize_admin_user
-    before_action :get_user, only[:edit, :update]
+    before_action :get_user, only: [:edit, :update]
     before_action :valid_user, only: [:edit, :update]
     before_action :check_expiration, only: [:edit, :update]
 
@@ -12,7 +12,7 @@ module Admin
       @user = User.find_by(email: params[:password_reset][:email])
       if @user
         @user.create_reset_password_token
-        @user.send_password_reset_email
+        PasswordResetMailerJob.perform_later(@user, @user.reset_password_token)
         redirect_to admin_login_path, notice: "パスワードをリセットするためのメールを送りました"
       else
         flash.now[:danger] = "入力いただいたメールアドレスは見つかりませんでした"
