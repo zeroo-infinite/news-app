@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   validates :content, presence: true
   validates :slug, presence: true, uniqueness: true
   has_many :article_histories
+  has_many :comments, dependent: :destroy
   belongs_to :category, optional: true
   belongs_to :user
   paginates_per 10

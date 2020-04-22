@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_121710) do
+ActiveRecord::Schema.define(version: 2020_04_21_234109) do
 
   create_table "article_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 100, null: false
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 2020_04_19_121710) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_comments_on_article_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "email", limit: 191, null: false
     t.string "password_digest", null: false
@@ -83,4 +91,5 @@ ActiveRecord::Schema.define(version: 2020_04_19_121710) do
 
   add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
+  add_foreign_key "comments", "articles"
 end

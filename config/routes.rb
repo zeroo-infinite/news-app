@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     delete "logout", to: "sessions#destroy"
   end
   resources :articles, only: :index
+  resources :comments, only: [:create]
   get "pages/:slug", to: "articles#show", as: :article
   get "pages/:category_name/:slug", to: "articles#show", as: :category_article
   mount Sidekiq::Web, at: "/sidekiq"
