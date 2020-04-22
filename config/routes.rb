@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   get "pages/:slug", to: "articles#show", as: :article
   get "pages/:category_name/:slug", to: "articles#show", as: :category_article
   mount Sidekiq::Web, at: "/sidekiq"
+  namespace :admin do
+    get "*path", controller: "base", action: "render_404"
+  end
+  get "*path", controller: "application", action: "render_404"
 end
