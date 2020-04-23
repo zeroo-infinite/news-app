@@ -20,10 +20,12 @@ module Admin
 
     def edit
       @article = Article.find(params[:id])
+      raise ActiveRecord::RecordNotFound  unless @article.user_id == current_user.id
     end
 
     def update
       @article = Article.find(params[:id])
+      raise ActiveRecord::RecordNotFound  unless @article.user_id == current_user.id
       @article.attributes = article_params
       if @article.update_with_history!(current_user)
         redirect_to articles_path, notice: "記事を更新しました"
@@ -34,7 +36,8 @@ module Admin
 
     def destroy
       @article = Article.find(params[:id])
-      if @article.delete_with_history!(current_user)
+      raise ActiveRecord::RecordNotFound  unless @article.user_id == current_user.id
+      if @article.destroy
         redirect_to articles_path, notice: "記事を削除しました"
       else
         flash.now[:danger] = "記事の削除に失敗しました"

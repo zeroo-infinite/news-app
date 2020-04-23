@@ -17,10 +17,11 @@ br
   = f.submit "投稿する", class: "btn btn-primary"
 
 .comment-area
+  h3 コメントエリア
   - @comments.each do |comment|
     .comment = comment.comment
 
 br
-- if current_user&.admin?
+- if current_user.id == @article.user_id
   = link_to "記事を編集", edit_admin_article_path(@article), class: 'btn btn-primary mr-3'
   = link_to "記事を削除", admin_article_path(@article), method: :delete, data: { confirm: "この記事を削除します。よろしいですか？" }, class: "btn btn-danger"
