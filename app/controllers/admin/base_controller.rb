@@ -18,7 +18,7 @@ class Admin::BaseController < ApplicationController
   def render_500(e = nil)
     if e
       logger.error "Rendering 500 with exception: #{e.class.name} (#{e.message})"
-      logger.error e.backtrace.inspect
+      logger.error e.backtrace.join("\n")
     end
     render file: Rails.root.join("public/errors/admin/500.html"), status: 500, layout: false, content_type: 'text/html', formats: [:html]
   end
