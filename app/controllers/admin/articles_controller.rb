@@ -34,12 +34,7 @@ module Admin
 
     def destroy
       @article = Article.find(params[:id])
-      if @article.delete_with_history!destroy!
-        ArticleHistory.create!(
-          article_id: @article.id,
-          user_id: current_user.id,
-          change_status: 1
-        )
+      if @article.delete_with_history!(current_user)
         redirect_to articles_path, notice: "記事を削除しました"
       else
         flash.now[:danger] = "記事の削除に失敗しました"

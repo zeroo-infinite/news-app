@@ -11,7 +11,7 @@ class ArticleHistory < ApplicationRecord
       article_id: article.id,
       user_id: current_user.id,
       category_id: changed_attributes["category_id"] ? changed_attributes["category_id"][0] : nil,
-      change_type: "update",
+      change_type: article.change_type,
       title: changed_attributes["title"] ? changed_attributes["title"][0] : nil,
       slug: changed_attributes["slug"] ? changed_attributes["slug"][0] : nil,
       image_url: changed_attributes["image_url"] ? changed_attributes["image_url"][0] : nil,
