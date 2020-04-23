@@ -6,12 +6,10 @@ class ArticleHistory < ApplicationRecord
   enumerize :status, in: { draft: 0, release: 1 }, predicates: true, scope: true
   enumerize :change_type, in: { update: 0, delete: 1 }, predicates: true, scope: true
 
-  def self.create_article_history!(changed_attributes, article, current_user)
+  def self.create_article_history!(changed_attributes, article)
     create!(
       article_id: article.id,
-      user_id: current_user.id,
       category_id: changed_attributes["category_id"] ? changed_attributes["category_id"][0] : nil,
-      change_type: article.change_type,
       title: changed_attributes["title"] ? changed_attributes["title"][0] : nil,
       slug: changed_attributes["slug"] ? changed_attributes["slug"][0] : nil,
       image_url: changed_attributes["image_url"] ? changed_attributes["image_url"][0] : nil,
