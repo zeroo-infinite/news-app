@@ -1,0 +1,7 @@
+h1 パスワードの再設定
+
+= form_with scope: :password_reset, url: admin_password_resets_path, method: :post, local: true do |f|
+  .form-group
+    = f.label :email, User.human_attribute_name(:email)
+    = f.text_field :email, placeholder: "登録したメールアドレス", class: "form-control"
+  = f.submit "送信する", class: "btn btn-primary"
