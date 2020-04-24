@@ -62,6 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: "192.168.33.10", port: 3000 }
   config.action_mailer.delivery_method = :smtp
+  # メール送信をテストするときはuser_nameに自分のGメールアドレス, passwordに自分アプリパスワードを入れてください。
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     domain: "gmail.com",
