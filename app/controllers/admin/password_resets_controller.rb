@@ -8,8 +8,7 @@ module Admin
     def create
       @user = User.find_by(email: params[:password_reset][:email])
       if @user
-        @user.create_reset_password_token
-        PasswordResetMailerJob.perform_later(@user, @user.reset_password_token)
+        Admin::UserMailer.password_reset(@user, @user.create_reset_password_token).deliver_later(wait: 1.minute)
         redirect_to admin_login_path, notice: "パスワードをリセットするためのメールを送りました"
       else
         flash.now[:danger] = "入力いただいたメールアドレスは見つかりませんでした"
