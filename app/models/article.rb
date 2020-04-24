@@ -17,7 +17,7 @@ class Article < ApplicationRecord
   def update_with_history!
     ActiveRecord::Base.transaction do
       save!
-      ArticleHistory.create_article_history!(saved_changes, self)
+      ArticleHistory.create_article_history!(self)
     end
   end
 end

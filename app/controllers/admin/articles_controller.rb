@@ -27,7 +27,7 @@ module Admin
       @article = Article.find(params[:id])
       raise ActiveRecord::RecordNotFound  unless @article.user_id == current_user.id
       @article.attributes = article_params
-      if @article.update_with_history!(current_user)
+      if @article.update_with_history!
         redirect_to articles_path, notice: "記事を更新しました"
       else
         render :edit

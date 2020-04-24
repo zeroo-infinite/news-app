@@ -1,7 +1,6 @@
 class CreateArticleHistories < ActiveRecord::Migration[6.0]
   def change
     create_table :article_histories do |t|
-      t.references :user, type: :bigint, null: false
       t.references :article, type: :bigint, null: false
       t.references :category, type: :bigint
       t.string :title, limit: 100

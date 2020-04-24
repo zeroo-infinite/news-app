@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_081233) do
   end
 
   create_table "article_histories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "article_id", null: false
     t.bigint "category_id"
     t.string "title", limit: 100
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_081233) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_article_histories_on_article_id"
     t.index ["category_id"], name: "index_article_histories_on_category_id"
-    t.index ["user_id"], name: "index_article_histories_on_user_id"
   end
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
