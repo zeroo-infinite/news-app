@@ -5,7 +5,7 @@ class ArticleFile < ApplicationRecord
   paginates_per 10
   mount_uploader :file_url, ArticleFileUploader
 
-  def set_attributes
+  def set_file_info
     self.file_type = File.extname(self.file_url.identifier)
     self.file_size = File.stat(self.file_url.file.file).size
     image = MiniMagick::Image.new(self.file_url.file.file)
