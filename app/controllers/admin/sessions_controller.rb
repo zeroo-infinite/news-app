@@ -11,7 +11,7 @@ class Admin::SessionsController < Admin::BaseController
       params[:session][:remember_me] == "1" ? remember(user) : forget(user)
       redirect_back_or(root_path)
     else
-      flash[:danger] = "ログインに失敗しました"
+      flash[:danger] = "メールアドレスまたはパスワードが間違っています"
       render :new
     end
   end

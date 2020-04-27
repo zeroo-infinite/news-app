@@ -18,7 +18,6 @@ class Admin::UsersController < Admin::BaseController
     if @admin_user.save
       redirect_to admin_users_path, notice: "ユーザを登録しました"
     else
-      flash.now[:danger] = "ユーザの登録に失敗しました"
       render :new
     end
   end
@@ -32,7 +31,6 @@ class Admin::UsersController < Admin::BaseController
     if @admin_user.update(admin_params)
       redirect_to admin_path, notice: "ユーザの情報を更新しました"
     else
-      flash.now[:danger] = "ユーザの情報更新に失敗しました"
       render :edit
     end
   end

@@ -13,7 +13,6 @@ module Admin
       if @category.save
         redirect_to admin_categories_path, notice: "カテゴリーを作成しました"
       else
-        flash.now[:danger] = "カテゴリーの作成に失敗しました"
         render :new
       end
     end
@@ -27,7 +26,6 @@ module Admin
       if @category.update(category_params)
         redirect_to admin_categories_path, notice: "カテゴリーを編集しました"
       else
-        flash.now[:danger] = "カテゴリーを編集できませんでした"
         render :edit
       end
     end

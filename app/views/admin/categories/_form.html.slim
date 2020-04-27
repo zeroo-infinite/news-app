@@ -1,4 +1,9 @@
-= form_with model: category, url: url do |f|
+- if category.errors.any?
+  ul#error_explanation
+    - category.errors.full_messages.each do |message|
+      li = message
+
+= form_with model: category, url: url, local: true do |f|
   .form-group
     = f.label :name, "カテゴリー名"
     = f.text_field :name, class: "form-control"
