@@ -1,7 +1,14 @@
-h1 パスワードの再設定
+.login-form.col-md-6.mx-auto
+  .card.p-4
+    .card-body
+      h1 パスワードの再設定
 
-= form_with scope: :password_reset, url: admin_password_resets_path, method: :post, local: true do |f|
-  .form-group
-    = f.label :email, User.human_attribute_name(:email)
-    = f.text_field :email, placeholder: "登録したメールアドレス", class: "form-control"
-  = f.submit "送信する", class: "btn btn-primary"
+      = form_with scope: :password_reset, url: admin_password_resets_path, method: :post, local: true do |f|
+        .form-group
+          = f.label :email, User.human_attribute_name(:email)
+          .input-group.md-3
+            .input-group-prepend
+              span.input-group-text
+                i.cil-user.c-icon
+            = f.text_field :email, placeholder: "登録したメールアドレス", class: "form-control"
+        = f.submit "送信する", class: "btn btn-primary"
