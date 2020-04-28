@@ -1,3 +1,6 @@
-h1 ユーザ編集
+.col-md-5.mx-auto
+  .card
+    .card-header
+      h1 ユーザ編集
 
-= render "form", admin_user: @admin_user, url: admin_user_path(@admin_user)
+    = render "form", admin_user: @admin_user, url: admin_user_path(@admin_user)

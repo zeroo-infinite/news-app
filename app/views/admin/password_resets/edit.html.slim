@@ -18,5 +18,10 @@
             = f.password_field :password, class: "form-control"
         .form-group
           = f.label :password_confirmation, "パスワード確認"
-          = f.password_field :password_confirmation, class: "form-control"
-        = f.submit "パスワードを変更する", class: "btn btn-primary"
+          .input-group.md-3
+            .input-group-prepend
+              span.input-group-text
+                i.cil-lock-locked.c-icon
+            = f.password_field :password_confirmation, class: "form-control"
+        .card-footer
+          = f.submit "パスワードを変更する", class: "btn btn-primary"

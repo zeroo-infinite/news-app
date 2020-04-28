@@ -1,3 +1,6 @@
-h1 アップロードしたファイルを変更する
+.col-md-5.mx-auto
+  .card
+    .card-header
+      h3 アップロードしたファイルを変更する
 
-= render "form", article_file: @article_file, url: admin_article_file_path(@article_file)
+    = render "form", article_file: @article_file, url: admin_article_file_path(@article_file)
