@@ -1,0 +1,14 @@
+.contents-container.col-md-6.mx-auto
+  h3 記事本文
+  - if current_user.id == @article.user_id
+    = link_to "記事を編集", edit_admin_article_path(@article), class: 'btn btn-outline-primary mr-3'
+    = link_to "記事を削除", admin_article_path(@article), method: :delete, data: { confirm: "この記事を削除します。よろしいですか？" }, class: "btn btn-outline-danger"
+
+  .contents-area.mx-auto.px-3
+    .news
+      .news-title
+        h4.font-weight-bold
+          = @article.title
+        .font-italic
+          p 公開日：#{ l @article.released_at, format: :date }
+      .news-content = simple_format(@article.content)

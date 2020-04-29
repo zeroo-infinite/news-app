@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :password_resets, only: [:new, :create, :edit, :update]
-    resources :articles, except: [:show]
+    resources :articles
     resources :categories, except: [:show]
     resources :article_files
     get "login", to: "sessions#new"

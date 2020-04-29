@@ -21,7 +21,7 @@ h1 記事一覧(管理者用)
 .news-container
   - @articles.each do |article|
     .news-card
-      = link_to article_path(article.slug, article_id: article.id), class: "news-link" do
+      = link_to admin_article_path(article), class: "news-link" do
         .news-image = image_tag(article.image_url.to_s)
         .news-title = article.title
 
