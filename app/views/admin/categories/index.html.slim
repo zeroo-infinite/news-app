@@ -1,13 +1,19 @@
-h1 カテゴリー一覧
-= link_to "カテゴリー作成", new_admin_category_path
+.col-md-7.mx-auto.mb-5
+  .card
+    .card-header
+      h3.font-weight-bold カテゴリー一覧
+      = link_to "カテゴリー作成", new_admin_category_path
 
-table
-  thead
-    tr
-      th カテゴリー名
-  tbody
-    - @categories.each do |category|
-      tr
-        td = category.name
-        td = link_to "編集", edit_admin_category_path(category), class: 'btn btn-primary mr-3'
-        td = link_to "削除", admin_category_path(category), method: :delete, data: { confirm: "カテゴリー#{category.name}を削除します。よろしいですか？" }, class: "btn btn-danger"
+    .card-body.table-responsive
+      table.table-bordered.table
+        thead
+          tr
+            th カテゴリー名
+            th アクション
+        tbody
+          - @categories.each do |category|
+            tr
+              td = category.name
+              td
+                = link_to "編集", edit_admin_category_path(category), class: 'btn btn-primary mr-3'
+                = link_to "削除", admin_category_path(category), method: :delete, data: { confirm: "カテゴリー#{category.name}を削除します。よろしいですか？" }, class: "btn btn-danger"
