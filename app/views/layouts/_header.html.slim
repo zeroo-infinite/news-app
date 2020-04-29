@@ -1,4 +1,4 @@
-.app-title.navbar.navbar-expand-md.navbar-light.bg-light
+.app-title.navbar.navbar-expand-md.navbar-light.bg-light.mb-5
   .navbar-brand News_app
 
   ul.navbar-nav.ml-auto
@@ -6,12 +6,12 @@
     - if current_user&.admin?
       li.nav-item = link_to "記事一覧(管理者用)", admin_articles_path, class: "nav-link"
       li.nav-item = link_to "ファイルアップロード", new_admin_article_file_path, class: "nav-link"
-      li.nav-item = link_to "タグ一覧", admin_categories_path, class: "nav-link"
+      li.nav-item = link_to "カテゴリー一覧", admin_categories_path, class: "nav-link"
       li.nav-item = link_to "記事作成", new_admin_article_path, class: "nav-link"
       li.nav-item = link_to "ファイル一覧", admin_article_files_path, class: "nav-link"
+      li.nav-item = link_to "マイページ", admin_user_path(current_user), class: "nav-link"
     - if logged_in?
       li.nav-item = link_to "ログアウト", admin_logout_path, method: :delete, class: "nav-link"
-      li.nav-item = link_to "マイページ", admin_user_path(current_user), class: "nav-link"
     - else
       li.nav-item = link_to "ユーザ登録", new_admin_user_path, class: "nav-link"
       li.nav-item = link_to "ログイン", admin_login_path, class: "nav-link"
