@@ -8,8 +8,15 @@ html
     = javascript_pack_tag "admin", media: "all"
     = stylesheet_pack_tag "admin"
   body
-    = render partial: "layouts/header"
-    - flash.each do |type, message|
-      div class = "alert-#{type}"
-        = message
-    = yield
+    = render partial: "layouts/admin_header"
+    .c-wrapper
+      .row
+        .col-md-3
+          = render "layouts/sidebar"
+        .col-md-9
+          .c-body
+            main.c-main
+              - flash.each do |type, message|
+                div class = "alert-#{type}"
+                  = message
+              = yield

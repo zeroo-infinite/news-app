@@ -1,4 +1,4 @@
-.col-md-10.mx-auto.mb-5
+.col-md-10.mb-5
   h1 メディアライブラリ
   .card
     = form_with model: @form, url: admin_article_files_path, method: :get, local: true do |f|
@@ -20,7 +20,7 @@
         .card-footer
           = f.submit "検索", class: "btn btn-primary"
 
-.news-container.col-md-9.mx-auto
+.news-container.col-md-9
   .row.row-cols-1.row-cols-md-4
     - @article_files.each do |article_file|
       .col.mb-3

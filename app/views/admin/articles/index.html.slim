@@ -1,6 +1,6 @@
-.col-md-7.mx-auto
+.col-md-7
   h1 記事一覧(管理者用)
-.col-md-7.mx-auto
+.col-md-7
   .card
     = form_with model: @form, url: admin_articles_path, method: :get, local: true do |f|
       .search_box
@@ -22,7 +22,7 @@
         .card-footer
           = f.submit "検索", class: "btn btn-primary"
 
-.news-container.col-md-7.mx-auto
+.news-container.col-md-7.pb-5
   .row.row-cols-1.row-cols-md-2
     - @articles.each do |article|
       .col.mb-3
