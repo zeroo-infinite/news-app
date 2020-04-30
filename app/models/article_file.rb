@@ -1,7 +1,7 @@
 class ArticleFile < ApplicationRecord
-  validates :name, null: false, length: { in: 1..100 }, presence: true
-  validates :slug, null: false, length: { in: 1..100 }, uniqueness: true
-  validates :file_url, null: false
+  validates :name, length: { in: 1..100 }, presence: true
+  validates :slug, presence: true, length: { in: 1..100 }, uniqueness: true
+  validates :file_url, presence: { message: "を選択してください" }
   paginates_per 10
   mount_uploader :file_url, ArticleFileUploader
 
