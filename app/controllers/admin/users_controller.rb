@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
   def update
     @admin_user = User.with_role(:admin).find(params[:id])
     if @admin_user.update(admin_params)
-      redirect_to admin_path, notice: "ユーザの情報を更新しました"
+      redirect_to admin_path(@admin_user), notice: "ユーザの情報を更新しました"
     else
       render :edit
     end
