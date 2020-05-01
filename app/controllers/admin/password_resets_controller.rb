@@ -44,7 +44,7 @@ module Admin
         render :edit
       elsif @user.update_attributes(user_params)
         log_in @user
-        redirect_to root_path, notice: "パスワードをリセットしました"
+        redirect_to admin_path, notice: "パスワードをリセットしました"
       else
         render :edit
       end
