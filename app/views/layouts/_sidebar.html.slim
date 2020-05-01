@@ -8,8 +8,12 @@
         |  新規投稿
     li.c-sidebar-nav-item.nav-dropdown
       = link_to admin_articles_path, class: "text-white c-sidebar-nav-link nav-dropdown-toggle" do
-        i.c-sidebar-nav-icon.cil-newspaper
+        i.c-sidebar-nav-icon.cil-notes
         |  記事一覧(管理者用)
+    li.c-sidebar-nav-item.nav-dropdown
+      = link_to articles_path, class: "text-white c-sidebar-nav-link nav-dropdown-toggle" do
+        i.c-sidebar-nav-icon.cil-newspaper
+        |  公開記事一覧
     li.c-sidebar-nav-item.nav-dropdown
       = link_to admin_categories_path, class: "text-white c-sidebar-nav-link nav-dropdown-toggle" do
         i.c-sidebar-nav-icon.cil-puzzle
