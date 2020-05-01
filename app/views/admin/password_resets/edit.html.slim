@@ -1,4 +1,4 @@
-.login-form.col-md-6
+.login-form
   .card.p-4
     .card-body
       h1 パスワードをリセットする
@@ -16,12 +16,11 @@
               span.input-group-text
                 i.cil-lock-locked.c-icon
             = f.password_field :password, class: "form-control"
-        .form-group
+        .form-group.mb-4
           = f.label :password_confirmation, "パスワード確認"
           .input-group.md-3
             .input-group-prepend
               span.input-group-text
                 i.cil-lock-locked.c-icon
             = f.password_field :password_confirmation, class: "form-control"
-        .card-footer
-          = f.submit "パスワードを変更する", class: "btn btn-primary"
+        = f.submit "パスワードを変更する", class: "btn btn-primary"

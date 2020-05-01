@@ -1,10 +1,10 @@
-.login-form.col-md-6
+.login-form
   .card.p-4
     .card-body
       h1 パスワードの再設定
 
       = form_with scope: :password_reset, url: admin_password_resets_path, method: :post, local: true do |f|
-        .form-group
+        .form-group.mb-3
           = f.label :email, User.human_attribute_name(:email)
           .input-group.md-3
             .input-group-prepend
