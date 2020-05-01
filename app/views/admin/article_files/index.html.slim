@@ -1,5 +1,8 @@
 .col-md-10.mb-5
-  h1 メディアライブラリ
+  .header.mb-3
+    h1.d-inline.mr-3 メディアライブラリ
+    button.btn.btn-secondary.align-text-bottom
+      = link_to "アップロード", new_admin_article_file_path, class: "file-link font-weight-bold"
   .card
     = form_with model: @form, url: admin_article_files_path, method: :get, local: true do |f|
       .search_box

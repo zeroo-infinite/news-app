@@ -1,8 +1,9 @@
 .col-md-7.mb-5
   .card
     .card-header
-      h3.font-weight-bold カテゴリー一覧
-      = link_to "カテゴリー作成", new_admin_category_path
+      h1.d-inline.mr-3 カテゴリー一覧
+      button.btn.btn-secondary.align-text-bottom
+        = link_to "新規作成", new_admin_category_path, class: "file-link font-weight-bold"
 
     .card-body.table-responsive
       table.table-bordered.table

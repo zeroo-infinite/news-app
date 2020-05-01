@@ -1,7 +1,9 @@
 .col-md-8.mb-5
   .card
     .card-header
-      h1 管理者一覧
+      h1.d-inline.mr-3 管理者一覧
+      button.btn.btn-secondary.align-text-bottom
+        = link_to "管理者登録", new_admin_user_path, class: "file-link font-weight-bold"
 
     .card-body.table-responsive
       table.table-bordered.table
