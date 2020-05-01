@@ -18,6 +18,6 @@ class Admin::SessionsController < Admin::BaseController
 
   def destroy
     log_out if logged_in?
-    redirect_to root_path
+    redirect_to admin_login_path, notice: "ログアウトしました"
   end
 end
