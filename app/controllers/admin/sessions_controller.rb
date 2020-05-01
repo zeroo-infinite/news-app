@@ -2,6 +2,7 @@ class Admin::SessionsController < Admin::BaseController
   skip_before_action :authorize_admin_user
 
   def new
+    redirect_to admin_path, notice: "既にログインしています" if logged_in?
   end
 
   def create
