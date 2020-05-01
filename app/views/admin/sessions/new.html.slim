@@ -3,7 +3,7 @@
     .card-body
       h3 ログインフォーム
 
-      = form_with scope: :session, url: admin_login_path, method: :post do |f|
+      = form_with scope: :session, url: admin_login_path, method: :post, local: true do |f|
         .form-group
           = f.label :email, User.human_attribute_name(:email)
           .input-group.md-3

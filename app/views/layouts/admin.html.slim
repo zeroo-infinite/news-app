@@ -17,6 +17,5 @@ html
           .c-body
             main.c-main
               - flash.each do |type, message|
-                div class = "alert-#{type}"
-                  = message
+                = content_tag(:div, message, class: "alert alert-#{type} col-md-8")
               = yield
