@@ -19,8 +19,14 @@ module Admin
 
     def edit
       @user = User.find_by(email: params[:email])
-      redirect_to admin_login_path, notice: "ユーザの認証に失敗しました" and return unless @user && @user.authenticated?(:reset_password_token, params[:id])
-      redirect_to new_admin_password_reset_path, notice: "変更リンクの有効期限がきれています" and return if @user.password_reset_expired?
+      if @user.password_reset_expired?
+        redirect_to new_admin_password_reset_path, notice: "変更リンクの有効期限がきれています"
+        return
+      end
+      unless @user && @user.authenticated?(:reset_password_token, params[:id])
+        redirect_to admin_login_path, notice: "ユーザの認証に失敗しました"
+        return
+      end
     end
 
     def update
