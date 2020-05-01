@@ -8,7 +8,8 @@ module Admin
     def create
       @user = User.find_by(email: params[:password_reset][:email])
       if @user
-        Admin::UserMailer.password_reset(@user, @user.create_reset_password_token).deliver_later(wait: 1.minute)
+        @user.create_reset_password_token
+        Admin::UserMailer.password_reset(@user, @user.reset_password_token).deliver_later(wait: 10.second)
         redirect_to admin_login_path, notice: "パスワードをリセットするためのメールを送りました"
       else
         flash.now[:danger] = "入力いただいたメールアドレスは見つかりませんでした"
@@ -18,20 +19,32 @@ module Admin
 
     def edit
       @user = User.find_by(email: params[:email])
-      redirect_to admin_login_path unless @user && @user.authenticated?(:reset_password_token, params[:id])
-      redirect_to new_admin_password_reset_path, notice: "パスワードの有効期限がきれています" if @user.password_reset_expired?
+      if @user.password_reset_expired?
+        redirect_to new_admin_password_reset_path, notice: "変更リンクの有効期限がきれています"
+        return
+      end
+      unless @user && @user.authenticated?(:reset_password_token, params[:id])
+        redirect_to admin_login_path, notice: "ユーザの認証に失敗しました"
+        return
+      end
     end
 
     def update
       @user = User.find_by(email: params[:email])
-      redirect_to admin_login_path unless @user && @user.authenticated?(:reset_password_token, params[:id])
-      redirect_to new_admin_password_reset_path, notice: "パスワードの有効期限がきれています" if @user.password_reset_expired?
+      if @user.password_reset_expired?
+        redirect_to new_admin_password_reset_path, notice: "変更リンクの有効期限がきれています"
+        return
+      end
+      unless @user && @user.authenticated?(:reset_password_token, params[:id])
+        redirect_to admin_login_path, notice: "ユーザの認証に失敗しました"
+        return
+      end
       if params[:user][:password].empty?
         @user.errors.add(:password, :blank)
         render :edit
       elsif @user.update_attributes(user_params)
         log_in @user
-        redirect_to root_path, notice: "パスワードをリセットしました"
+        redirect_to admin_path, notice: "パスワードをリセットしました"
       else
         render :edit
       end

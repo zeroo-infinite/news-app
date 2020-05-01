@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_081233) do
+ActiveRecord::Schema.define(version: 2020_04_28_103139) do
   create_table "article_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", limit: 100, null: false
     t.string "slug", limit: 100, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_081233) do
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", limit: 100, null: false
-    t.string "content", null: false
+    t.text "content", null: false
     t.string "slug", null: false
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false

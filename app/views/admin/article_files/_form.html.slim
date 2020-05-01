@@ -4,16 +4,18 @@
       li = message
 
 = form_with model: article_file, url: url, local: true do |f|
-  - if article_file.persisted? && article_file.file_url?
-    = image_tag(article_file.file_url.to_s, :size => "200x200")
-  .form-group
-    = f.label :name, "ファイル名"
-    = f.text_field :name, class: "form-control"
-  .form-group
-    = f.label :slug, "URLに表示する文字列"
-    = f.text_field :slug, class: "form-control"
-  .form-group
-    = f.label :file_url, "ファイル"
-    = f.file_field :file_url, class: "form-control"
-    = f.hidden_field :file_url_cache
-  = f.submit "作成", class: "btn btn-primary"
+  .card-body
+    - if article_file.persisted? && article_file.file_url?
+      = image_tag(article_file.file_url.to_s, :size => "200x200")
+    .form-group
+      = f.label :name, "ファイル名"
+      = f.text_field :name, class: "form-control"
+    .form-group
+      = f.label :slug, "URLに表示する文字列"
+      = f.text_field :slug, class: "form-control"
+    .form-group
+      = f.label :file_url, "ファイル"
+        = f.file_field :file_url, class: "form-control-file"
+        = f.hidden_field :file_url_cache
+  .card-footer
+    = f.submit "作成", class: "btn btn-primary"

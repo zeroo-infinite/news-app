@@ -21,9 +21,24 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
+        password_digest: パスワード
         role: 権限
         created_at: 作成日
         updated_at: 更新日
+      article_file:
+        name: ファイル名
+        slug: URLに入れたい文字
+        file_url: ファイル
+        file_type: ファイルの種類
+        file_size: ファイルのサイズ
+      category:
+        name: カテゴリー名
+      article:
+        title: タイトル
+        content: 本文
+        slug: URLに入れたい文字
+      comment:
+        comment: コメント
   date:
     abbr_day_names:
     - 日
@@ -219,4 +234,5 @@ ja:
       default: "%%Y/%m/%d %H:%M"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      date: "%Y/%m/%d"
     pm: 午後

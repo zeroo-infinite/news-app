@@ -1,27 +1,26 @@
-- if @article.released_at?
-  h1 記事本文(公開日：#{ l @article.released_at, formats: :default})
-- else
-  h1 記事本文
+.contents-container.col-md-6.mx-auto
+  h3 記事本文
 
-.contents-area
-  .news
-    .news-title = @article.title()
-    .news-content = @article.content
+  .contents-area.mx-auto.px-3
+    .news
+      .news-title
+        h4.font-weight-bold
+          = @article.title
+        .font-italic
+          p 公開日：#{ l @article.released_at, format: :date }
+      .news-content = simple_format(@article.content)
 
-br
-= form_with model: @comment, url: comments_path, local: true do |f|
-  = hidden_field_tag :article_id, @article.id
-  .form-group
-    = f.label :comment, "コメント"
-    = f.text_area :comment, class: "form-control", placeholder: "コメントを書く"
-  = f.submit "投稿する", class: "btn btn-primary"
-
-.comment-area
-  h3 コメントエリア
-  - @comments.each do |comment|
-    .comment = comment.comment
-
-br
-- if current_user.id == @article.user_id
-  = link_to "記事を編集", edit_admin_article_path(@article), class: 'btn btn-primary mr-3'
-  = link_to "記事を削除", admin_article_path(@article), method: :delete, data: { confirm: "この記事を削除します。よろしいですか？" }, class: "btn btn-danger"
+  br
+  = form_with model: @comment, url: comments_path, local: true do |f|
+    = hidden_field_tag :article_id, @article.id
+    .form-group
+      = f.label :comment, "コメント"
+      = f.text_area :comment, class: "form-control", placeholder: "コメントを書く"
+    = f.submit "投稿する", class: "btn btn-primary"
+  br
+  .comment-area
+    h3 コメントエリア
+    - @comments.each do |comment|
+      .comment-wrapper.border-bottom
+        .comment.col-md-10.mx-auto
+          = simple_format(comment.comment)

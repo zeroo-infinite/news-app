@@ -1,11 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  root to: "admin/users#index"
+  root to: "home#index"
   namespace :admin do
+    get "/", to: "home#index"
     resources :users
     resources :password_resets, only: [:new, :create, :edit, :update]
-    resources :articles, except: [:show]
+    resources :articles
     resources :categories, except: [:show]
     resources :article_files
     get "login", to: "sessions#new"
