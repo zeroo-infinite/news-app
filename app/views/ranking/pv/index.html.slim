@@ -1,0 +1,35 @@
+.col-md-5.mx-auto
+  h1 ランキング
+  span pvランキング
+  span コメントランキング
+.col-md-5.mx-auto.mb-5
+  .card
+    = form_with model: @form, url: ranking_pv_path, method: :get, local: true do |f|
+      .search_box
+        .card-body
+          h3 検索フォーム
+          .form-group
+            = f.label :term, "集計時間"
+            = f.select :term, [["24時間", "daily"], ["週間", "weekly"], ["月間", "monthly"]], class: "form-control"
+            = f.submit "検索", class: "btn btn-primary"
+.news-container.col-md-5.mx-auto.pb-5
+  .row.row-cols-1
+    .category
+      = link_to "総合", ranking_pv_path
+      - @category.each do |category|
+        = link_to category.name, ranking_path(category_name: category.name)
+    - @articles.each do |article|
+      .col.mb-3
+        .card.h-100
+          - if article.category.nil?
+            = link_to article_path(article.slug, article_id: article.id), class: "news-link" do
+              .news-image = image_tag(article.image_url.to_s)
+              .card-body
+                h4.card-title.font-weight-bold.text-body = article.title
+                p.text-secondary 公開日：#{ l article.released_at, format: :date }
+          - else
+            = link_to category_article_path(slug: article.slug, category_name: article.category.name, article_id: article.id), class: "news-link" do
+              .news-image = image_tag(article.image_url.to_s)
+              .card-body
+                h4.card-title.font-weight-bold.text-body = article.title
+                p.text-secondary 公開日：#{ l article.released_at, format: :date }
