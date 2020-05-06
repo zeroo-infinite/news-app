@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     delete "logout", to: "sessions#destroy"
   end
   resources :articles, only: :index
+  namespace :ranking do
+    get "pv", to: "pv#index"
+  end
   resources :comments, only: [:create]
   get "pages/:slug", to: "articles#show", as: :article
   get "pages/:category_name/:slug", to: "articles#show", as: :category_article
