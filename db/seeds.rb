@@ -52,6 +52,7 @@ end
     content: "プログラム本文",
     slug: "program#{t}",
     status: 1,
+    pv_count: rand(0..1000),
     released_at: Time.zone.local(2019, 11, 1, 10, 00),
     created_at: Time.zone.local(2019, 10, 30, 10, 00),
     updated_at: Time.zone.local(2019, 10, 30, 10, 00)
@@ -67,4 +68,30 @@ end
     slug: "sample#{t}",
     status: 0
   )
+end
+
+20.times do |time|
+  time += 21
+  30.times do |t|
+    DailyPvSummary.create(
+      article_id: time,
+      pv_count: rand(1..1000),
+      date: Date.new(2019, 11, t + 1),
+      created_at: Time.zone.local(2019, 11, t + 1, 10, 00),
+      updated_at: Time.zone.local(2019, 11, t + 1, 10, 00)
+    )
+  end
+end
+
+20.times do |time|
+  time += 21
+  30.times do |t|
+    DailyPvSummary.create(
+      article_id: time,
+      pv_count: rand(1..1000),
+      date: Date.new(2019, 12, t + 1),
+      created_at: Time.zone.local(2019, 12, t + 1, 10, 00),
+      updated_at: Time.zone.local(2019, 12, t + 1, 10, 00)
+    )
+  end
 end
