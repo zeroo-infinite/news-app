@@ -5,11 +5,9 @@ class Article < ApplicationRecord
   validates :slug, presence: true, uniqueness: true
   has_many :article_histories
   has_many :comments, dependent: :destroy
-  has_many :daily_pv_summaries, dependent: :destroy
-  has_many :weekly_pv_summaries, dependent: :destroy
-  has_many :monthly_pv_summaries, dependent: :destroy
-  has_many :daily_comment_summaries, dependent: :destroy
-  has_many :weekly_comment_summaries, dependent: :destroy
+  has_many :daily_article_summaries, dependent: :destroy
+  has_many :weekly_article_summaries, dependent: :destroy
+  has_many :monthly_article_summaries, dependent: :destroy
   belongs_to :category, optional: true
   belongs_to :user
   paginates_per 10
