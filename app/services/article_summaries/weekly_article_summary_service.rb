@@ -1,7 +1,7 @@
 module ArticleSummaries
   class WeeklyArticleSummaryService
     # 記事毎のpv数とコメント数を週間で集計する
-    def total_pv
+    def summary
       date = Date.today
       article_ids = DailyPvSummary.where(date: date.ago(7.days)..date.yesterday).select(:article_id).distinct
       article_ids.each do |article_id|
