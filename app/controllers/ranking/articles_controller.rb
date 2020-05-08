@@ -1,13 +1,13 @@
 module Ranking
   class ArticlesController < ApplicationController
     def comment
-      @form = Ranking::CommentSearchForm.new(comment_search_params)
+      @form = Ranking::Articles::CommentSearchForm.new(comment_search_params)
       @articles = @form.search
       @category = Category.all
     end
 
     def pv
-      @form = Ranking::PvSearchForm.new(pv_search_params)
+      @form = Ranking::Articles::PvSearchForm.new(pv_search_params)
       @articles = @form.search
       @category = Category.all
     end
