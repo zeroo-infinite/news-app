@@ -6,8 +6,8 @@ module UserSummaries
       users = User.includes(:articles).where(role: "admin")
       users.each do |user|
         article_ids = user.articles.map { |article| article.id }
-        next if article_ids.empty?
         summaries = DailyArticleSummary.where(date: date).where(article_id: article_ids)
+        next if summaries.empty?
         pv_count = 0
         comment_count = 0
         summaries.each do |summary|
