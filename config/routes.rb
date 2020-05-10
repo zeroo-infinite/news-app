@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   resources :articles, only: :index
   namespace :ranking do
     get "pv", to: "articles#pv"
+    get "pv/:category_name", to: "articles#pv"
     get "comment", to: "articles#comment"
+    get "comment/:category_name", to: "articles#comment"
   end
   resources :comments, only: [:create]
   get "pages/:slug", to: "articles#show", as: :article

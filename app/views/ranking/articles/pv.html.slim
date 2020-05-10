@@ -1,17 +1,26 @@
 .col-md-5.mx-auto
   h1 pvランキング
-  = link_to "pvランキング", ranking_pv_path
-  = link_to "コメントランキング", ranking_comment_path
+  = render "ranking/header"
 .col-md-5.mx-auto.mb-5
-  .card
-    = form_with model: @form, url: ranking_pv_path, method: :get, local: true do |f|
-      .search_box
-        .card-body
-          .form-group
-            = f.label :term, "集計時間"
-            = f.select :term, [["24時間", "daily"], ["週間", "weekly"], ["月間", "monthly"]], class: "form-control"
-          = f.submit "検索", class: "btn btn-primary"
+  p 集計時間
+  .dropdown
+    button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle[type="button" data-toggle="dropdown" aria-expanded="false"]
+      - if params[:term]
+        = "#{{ "daily": "24時間", "weekly": "週間", "monthly": "月間" }[params[:term].to_sym]}"
+      - else
+        | 24時間
+    .dropdown-menu[aria-labelledby="dropdownMenuButton"]
+      - if params[:category_name]
+        = link_to "24時間", ranking_path(category_name: params[:category_name], term: "daily"), class: "dropdown-item"
+        = link_to "週間", ranking_path(category_name: params[:category_name], term: "weekly"), class: "dropdown-item"
+        = link_to "月間", ranking_path(category_name: params[:category_name], term: "monthly"), class: "dropdown-item"
+      - else
+        = link_to "24時間", ranking_pv_path(term: "daily"), class: "dropdown-item"
+        = link_to "週間", ranking_pv_path(term: "weekly"), class: "dropdown-item"
+        = link_to "月間", ranking_pv_path(term: "monthly"), class: "dropdown-item"
 .news-container.col-md-5.mx-auto.pb-5
+  - @categories.each do |category|
+    = link_to category.name, ranking_path(category_name: category.name, term: params[:term])
   .row.row-cols-1
     - @articles.each do |article|
       .col.mb-3

@@ -70,28 +70,75 @@ end
   )
 end
 
-20.times do |time|
-  time += 21
-  30.times do |t|
-    DailyPvSummary.create(
-      article_id: time,
-      pv_count: rand(1..1000),
-      date: Date.new(2019, 11, t + 1),
-      created_at: Time.zone.local(2019, 11, t + 1, 10, 00),
-      updated_at: Time.zone.local(2019, 11, t + 1, 10, 00)
+50.times do |t|
+  Comment.create(
+    article_id: rand(21..40),
+    comment: "コメント",
+    created_at: Time.zone.local(2019, 10, 31, 10, 00),
+    updated_at: Time.zone.local(2019, 10, 31, 10, 00)
+  )
+end
+
+30.times do |time|
+  50.times do |t|
+    Comment.create(
+      article_id: rand(21..40),
+      comment: "コメント",
+      created_at: Time.zone.local(2019, 11, time + 1, 10, 00),
+      updated_at: Time.zone.local(2019, 11, time + 1, 10, 00)
     )
   end
+end
+
+20.times do |t|
+  t += 21
+  comment = Comment.where(article_id: t).where(created_at: Time.zone.local(2019, 10, 31, 10, 00))
+  DailyArticleSummary.create(
+    article_id: t,
+    pv_count: rand(1..1000),
+    comment_count: comment.size,
+    date: Date.new(2019, 10, 31),
+    created_at: Time.zone.local(2019, 11, 1, 10, 00),
+    updated_at: Time.zone.local(2019, 11, 1, 10, 00)
+  )
+end
+
+20.times do |time|
+  time += 21
+  29.times do |t|
+    comments = Comment.where(article_id: time).where(created_at: Time.zone.local(2019, 11, t + 1, 10, 00))
+    DailyArticleSummary.create(
+      article_id: time,
+      pv_count: rand(1..1000),
+      comment_count: comments.size,
+      date: Date.new(2019, 11, t + 1),
+      created_at: Time.zone.local(2019, 11, t + 2, 10, 00),
+      updated_at: Time.zone.local(2019, 11, t + 2, 10, 00)
+    )
+  end
+
+  comments = Comment.where(article_id: time).where(created_at: Time.zone.local(2019, 11, 30, 10, 00))
+  DailyArticleSummary.create(
+    article_id: time,
+    pv_count: rand(1..1000),
+    comment_count: comments.size,
+    date: Date.new(2019, 11, 30),
+    created_at: Time.zone.local(2019, 12, 1, 10, 00),
+    updated_at: Time.zone.local(2019, 12, 1, 10, 00)
+  )
 end
 
 20.times do |time|
   time += 21
   30.times do |t|
-    DailyPvSummary.create(
+    comments = Comment.where(article_id: time).where(created_at: Time.zone.local(2019, 12, t + 1, 10, 00))
+    DailyArticleSummary.create(
       article_id: time,
       pv_count: rand(1..1000),
+      comment_count: comments.size,
       date: Date.new(2019, 12, t + 1),
-      created_at: Time.zone.local(2019, 12, t + 1, 10, 00),
-      updated_at: Time.zone.local(2019, 12, t + 1, 10, 00)
+      created_at: Time.zone.local(2019, 12, t + 2, 10, 00),
+      updated_at: Time.zone.local(2019, 12, t + 2, 10, 00)
     )
   end
 end
