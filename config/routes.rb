@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     get "pv/:category_name", to: "articles#pv"
     get "comment", to: "articles#comment"
     get "comment/:category_name", to: "articles#comment"
+    get "user/pv", to: "users#pv"
+    get "user/pv/:category_name", to: "users#pv"
+    get "user/comment", to: "users#comment"
+    get "user/comment/:category_name", to: "users#comment"
   end
   resources :comments, only: [:create]
   get "pages/:slug", to: "articles#show", as: :article
