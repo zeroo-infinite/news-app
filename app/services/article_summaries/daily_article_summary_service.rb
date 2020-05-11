@@ -1,7 +1,7 @@
 module ArticleSummaries
   class DailyArticleSummaryService
     # 記事毎のpv数とコメント数を日別で集計する
-    def summay
+    def summary
       date = Date.yesterday
       from = date.beginning_of_day
       to = date.end_of_day
