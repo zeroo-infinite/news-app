@@ -2,5 +2,5 @@ SHELL=/bin/bash
 PATH=/home/vagrant/.rbenv/shims/:/sbin:/bin:/usr/sbin:/usr/bin
 HOME=/var/www/news_app
 
-* 0 * * * bundle exec rake article_summary:summary > /var/log/worker/article_summary.log
-10 0 * * * bundle exec rake user_summary:summary >  /var/log/worker/user_summary.log
+* 0 * * * bundle exec rails article_summary:summary > /var/log/article_summary.log
+10 0 * * * bundle exec rails user_summary:summary >  /var/log/user_summary.log
