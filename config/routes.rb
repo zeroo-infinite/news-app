@@ -19,10 +19,10 @@ Rails.application.routes.draw do
     get "pv/:category_name", to: "articles#index"
     get "comment", to: "articles#index"
     get "comment/:category_name", to: "articles#index"
-    get "user/pv", to: "users#pv"
-    get "user/pv/:category_name", to: "users#pv"
-    get "user/comment", to: "users#comment"
-    get "user/comment/:category_name", to: "users#comment"
+    get "user/pv", to: "users#index"
+    get "user/pv/:category_name", to: "users#index"
+    get "user/comment", to: "users#index"
+    get "user/comment/:category_name", to: "users#index"
   end
   resources :comments, only: [:create]
   get "pages/:slug", to: "articles#show", as: :article
