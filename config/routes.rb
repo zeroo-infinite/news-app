@@ -15,10 +15,10 @@ Rails.application.routes.draw do
   end
   resources :articles, only: :index
   namespace :ranking do
-    get "pv", to: "articles#pv"
-    get "pv/:category_name", to: "articles#pv"
-    get "comment", to: "articles#comment"
-    get "comment/:category_name", to: "articles#comment"
+    get "pv", to: "articles#index"
+    get "pv/:category_name", to: "articles#index"
+    get "comment", to: "articles#index"
+    get "comment/:category_name", to: "articles#index"
     get "user/pv", to: "users#pv"
     get "user/pv/:category_name", to: "users#pv"
     get "user/comment", to: "users#comment"

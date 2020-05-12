@@ -1,13 +1,7 @@
 module Ranking
   class ArticlesController < ApplicationController
-    def comment
-      @form = Ranking::Articles::CommentSearchForm.new(search_params)
-      @articles = @form.search
-      @categories = Category.all
-    end
-
-    def pv
-      @form = Ranking::Articles::PvSearchForm.new(search_params)
+    def index
+      @form = Ranking::Articles::SearchForm.new(search_params)
       @articles = @form.search
       @categories = Category.all
     end
@@ -15,7 +9,8 @@ module Ranking
     private
 
       def search_params
-        params.permit(:term, :category_name)
+        params[:path] = request.path
+        params.permit(:term, :category_name, :path)
       end
   end
 end
