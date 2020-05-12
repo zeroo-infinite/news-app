@@ -9,8 +9,7 @@ module Ranking
       end
 
       def search
-        # date = Date.yesterday
-        date = Date.new(2019, 11, 30)
+        date = Date.yesterday
         model = find_term_model
         summaries = model.top_comment_summaries(date)
         summaries.map { |summary| summary.user }
