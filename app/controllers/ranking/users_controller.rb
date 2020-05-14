@@ -7,9 +7,9 @@ module Ranking
 
     private
 
-      def search_params
-        params[:path] = request.path
-        params.permit(:term, :path)
-      end
+    def search_params
+      params[:path] = request.path
+      params.permit(:term, :path)
+    end
   end
 end

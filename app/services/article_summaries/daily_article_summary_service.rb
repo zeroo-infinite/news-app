@@ -9,7 +9,7 @@ module ArticleSummaries
       articles.each do |article|
         ActiveRecord::Base.transaction do
           summary = article.daily_article_summaries.build
-          comment = article.comments.where(created_at: from..to)
+          comments = article.comments.where(created_at: from..to)
           summary.pv_count = article.pv_count
           summary.comment_count = comment.size
           summary.date = date

@@ -20,18 +20,18 @@ module Ranking
 
       private
 
-        def find_term_model
-          case @term
-          when "daily"
-            DailyUserSummary
-          when "weekly"
-            WeeklyUserSummary
-          when "monthly"
-            MonthlyUserSummary
-          else
-            DailyUserSummary
-          end
+      def find_term_model
+        case @term
+        when "daily"
+          DailyUserSummary
+        when "weekly"
+          WeeklyUserSummary
+        when "monthly"
+          MonthlyUserSummary
+        else
+          DailyUserSummary
         end
+      end
     end
   end
 end
