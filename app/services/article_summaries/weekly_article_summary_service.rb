@@ -4,19 +4,14 @@ module ArticleSummaries
     def execute
       date = Date.today
       article_ids = DailyArticleSummary.where(date: date.ago(7.days)..date.yesterday).pluck(:article_id).uniq
+      total_comments = DailyArticleSummary.where(date: date.ago(7.days)..date.yesterday).group(:article_id).sum(:comment_count)
+      total_pvs = DailyArticleSummary.where(date: date.ago(7.days)..date.yesterday).group(:article_id).sum(:pv_count)
       weekly_article_summaries = []
       article_ids.each do |article_id|
-        daily_article_summaries = DailyArticleSummary.where(date: date.ago(7.days)..date.yesterday).where(article_id: article_id)
-        pv_count = 0
-        comment_count = 0
-        daily_article_summaries.each do |daily_article_summary|
-          pv_count += daily_article_summary.pv_count
-          comment_count += daily_article_summary.comment_count
-        end
         weekly_article_summaries << WeeklyArticleSummary.new(
           article_id: article_id,
-          pv_count: pv_count,
-          comment_count: comment_count,
+          pv_count: total_pvs[article_id],
+          comment_count: total_comments[article_id],
           start_date: date.ago(7.days),
           end_date: date.yesterday
         )
