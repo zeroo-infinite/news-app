@@ -4,15 +4,16 @@ module ArticleSummaries
     def execute
       date = Date.today
       article_ids = DailyArticleSummary.where(date: date.ago(1.month)..date.yesterday).pluck(:article_id).uniq
+      monthly_article_summaries = []
       article_ids.each do |article_id|
-        summaries = DailyArticleSummary.where(date: date.ago(1.month)..date.yesterday).where(article_id: article_id)
+        daily_article_summaries = DailyArticleSummary.where(date: date.ago(1.month)..date.yesterday).where(article_id: article_id)
         pv_count = 0
         comment_count = 0
-        summaries.each do |summary|
-          pv_count += summary.pv_count
-          comment_count += summary.comment_count
+        daily_article_summaries.each do |daily_article_summary|
+          pv_count += daily_article_summary.pv_count
+          comment_count += daily_article_summary.comment_count
         end
-        MonthlyArticleSummary.create!(
+        monthly_article_summaries << MonthlyArticleSummary.new(
           article_id: article_id,
           pv_count: pv_count,
           comment_count: comment_count,
@@ -20,6 +21,7 @@ module ArticleSummaries
           end_date: date.yesterday
         )
       end
+      MonthlyArticleSummary.import monthly_article_summaries
     end
   end
 end

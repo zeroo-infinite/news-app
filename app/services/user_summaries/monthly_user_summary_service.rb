@@ -5,16 +5,17 @@ module UserSummaries
       from = date.ago(30.days)
       to = date.yesterday
       users = User.where(role: "admin")
+      monthly_user_summaries = []
       users.each do |user|
-        summaries = DailyUserSummary.where(date: from..to).where(user_id: user)
-        next if summaries.empty?
+        daily_user_summaries = DailyUserSummary.where(date: from..to).where(user_id: user)
+        next if daily_user_summaries.blank?
         pv_count = 0
         comment_count = 0
-        summaries.each do |summary|
-          pv_count += summary.pv_count
-          comment_count += summary.comment_count
+        daily_user_summaries.each do |daily_user_summary|
+          pv_count += daily_user_summary.pv_count
+          comment_count += daily_user_summary.comment_count
         end
-        MonthlyUserSummary.create!(
+        monthly_user_summaries << MonthlyUserSummary.new(
           user_id: user.id,
           pv_count: pv_count,
           comment_count: comment_count,
@@ -22,6 +23,7 @@ module UserSummaries
           end_date: to
         )
       end
+      MonthlyUserSummary.import monthly_user_summaries
     end
   end
 end
