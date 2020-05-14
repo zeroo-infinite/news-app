@@ -1,7 +1,7 @@
 module UserSummaries
   class DailyUserSummaryService
     # コメントとpv数
-    def summary
+    def execute
       date = Date.yesterday
       users = User.includes(:articles).where(role: "admin")
       users.each do |user|

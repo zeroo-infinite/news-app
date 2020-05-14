@@ -1,6 +1,6 @@
 module UserSummaries
   class WeeklyUserSummaryService
-    def summary
+    def execute
       date = Date.today
       from = date.ago(7.days)
       to = date.yesterday

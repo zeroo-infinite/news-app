@@ -1,6 +1,6 @@
 module UserSummaries
   class MonthlyUserSummaryService
-    def summary
+    def execute
       date = Date.today
       from = date.ago(30.days)
       to = date.yesterday

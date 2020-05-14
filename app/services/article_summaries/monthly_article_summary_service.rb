@@ -1,7 +1,7 @@
 module ArticleSummaries
   class MonthlyArticleSummaryService
     # 記事毎のpv数とコメント数を月間で集計する
-    def summary
+    def execute
       date = Date.today
       article_ids = DailyArticleSummary.where(date: date.ago(1.month)..date.yesterday).select(:article_id).distinct
       article_ids.each do |article_id|
