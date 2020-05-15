@@ -5,3 +5,5 @@
 :queues:
   - default
   - mailers
+  - create_article_summary
+  - create_user_summary

@@ -1,6 +1,7 @@
 module Admin
   class PasswordResetsController < Admin::BaseController
     skip_before_action :authorize_admin_user
+    layout "login"
 
     def new
     end
