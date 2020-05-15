@@ -6,6 +6,7 @@ module ArticleSummaries
       from = date.beginning_of_day
       to = date.end_of_day
       articles = Article.where(status: "release").where('released_at <= ?', to)
+                        .or(Article.where(status: "draft").where('released_at <= ?', to))
       summaries = []
       articles.each do |article|
         summary = article.daily_article_summaries.build
