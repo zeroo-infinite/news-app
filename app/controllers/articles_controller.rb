@@ -6,8 +6,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:article_id])
-    @article.pv_count += 1
-    @article.save
+    @article.increment!(:pv_count)
     @comments = @article.comments
     @comment = @article.comments.build
   end
