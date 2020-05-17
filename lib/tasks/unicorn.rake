@@ -23,7 +23,7 @@ namespace :unicorn do
 
   def unicorn_pid
     # ここresucueさせる必要あるのか？
-    File.read("/var/run/server.pid").to_i
+    File.read("#{rails_root}/tmp/pids/unicorn.pid").to_i
   end
 
   def rails_root

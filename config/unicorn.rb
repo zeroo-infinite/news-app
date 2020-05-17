@@ -6,13 +6,9 @@ preload_app true
 working_directory rails_root
 timeout 60
 # nginxを使用するための設定
-# listen File.expand_path("tmp/sockets/unicorn.sock", rails_root)
-listen "/var/run/unicorn.sock"
+listen "/tmp/sockets/unicorn.sock"
 
-listen "192.168.33.10:3000"
-
-# pid File.expand_path("../../tmp/pids/unicorn.pid", __FILE__)
-pid "/var/run/server.pid"
+pid File.expand_path("../../tmp/pids/unicorn.pid", __FILE__)
 
 # Unicornのエラーログと通常ログの位置を指定
 stderr_path File.expand_path("log/unicorn.stderr.log", rails_root)
