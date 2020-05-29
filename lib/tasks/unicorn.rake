@@ -2,7 +2,8 @@ namespace :unicorn do
   desc "unicornの起動"
   task :start do
     config =  rails_root + "/config/unicorn.rb"
-    sh "bundle exec unicorn -c #{config} -D"
+    env = Rails.env.to_s
+    sh "bundle exec unicorn -c #{config} -D -E #{env}"
   end
 
   desc "unicornの停止"
