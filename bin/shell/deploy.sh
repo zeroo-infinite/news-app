@@ -11,7 +11,7 @@ if [ "$ARG" != "deploy" ]; then
     DRY_OPTION="--dry-run"
     echo "setting dry-run"
 fi
-if [ "$USER" != "appuser" ]; then
+if [ "$USER" != "sumi" ]; then
   echo "$USER Permission denied"
   exit 0
 fi
