@@ -1,7 +1,7 @@
 .upload-file
   .file-content.mb-5
     - if is_image?(@article_file)
-      .file = image_tag(@article_file.file_url.to_s, :size => "500x400")
+      .file = image_tag(@article_file.file_url.url, :size => "500x400")
     - elsif @article_file.file_type.include?("pdf")
       p pdfファイル
     - elsif @article_file.file_type.include?("mp3")

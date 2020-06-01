@@ -7,8 +7,12 @@ class ArticleFile < ApplicationRecord
 
   def set_file_info
     self.file_type = File.extname(self.file_url.identifier)
-    self.file_size = File.stat(self.file_url.file.file).size
-    image = MiniMagick::Image.new(self.file_url.file.file)
+    self.file_size = self.file_url.size
+    if Rails.env.production?
+      image = MiniMagick::Image.open(self.file_url.url)
+    else
+      image = MiniMagick::Image.open(self.file_url.path)
+    end
     if image.valid?
       self.data = { "width": image[:width], "height": image[:height] }
     end
