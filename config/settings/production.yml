@@ -2,3 +2,11 @@ fog_storage:
   aws:
     access_key: AKIATSKOLFNS7BLBJ7XT
     secret_access_key: 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
+
+sidekiq:
+  server: &elastic_cache redis://newsapp-redis.kkddua.ng.0001.apne1.cache.amazonaws.com:6379/0
+  client: *elastic_cache
+
+smtp:
+  user_name: "sumi@astrea.jp"
+  password: "qrheszaaossssfat"
