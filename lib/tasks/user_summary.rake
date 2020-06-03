@@ -1,6 +1,6 @@
 namespace :user_summary do
   desc "日別、週間、月間のpv数とコメント数をユーザ毎で集計"
-  task :summary do
+  task summary: :environment do
     daily_summary = UserSummaries::DailyUserSummaryService.new
     daily_summary.execute
     weekly_summary = UserSummaries::WeeklyUserSummaryService.new

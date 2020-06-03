@@ -31,7 +31,7 @@
           .card-body
             - if is_image?(article_file)
               = link_to admin_article_file_path(article_file), class: "file-link" do
-                .file = image_tag(article_file.file_url.to_s, class: "w-100 img-responsive")
+                .file = image_tag(article_file.file_url.url, class: "w-100 img-responsive")
                 .file-name.text-body = article_file.name
             - elsif article_file.file_type.include?("pdf")
               = link_to admin_article_file_path(article_file), class: "file-link" do

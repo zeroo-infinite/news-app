@@ -1,6 +1,6 @@
 SHELL=/bin/bash
-PATH=/home/vagrant/.rbenv/shims/:/sbin:/bin:/usr/sbin:/usr/bin
-HOME=/var/www/news_app
+PATH=/home/sumi/.rbenv/shims/:/sbin:/bin:/usr/sbin:/usr/bin
+HOME=/home/sumi/news-app
 
-* 0 * * * bundle exec rails article_summary:summary > /var/log/article_summary.log
-10 0 * * * bundle exec rails user_summary:summary >  /var/log/user_summary.log
+* 0 * * * bundle exec rails article_summary:summary >> /var/log/article_summary.log 2>&1
+10 0 * * * bundle exec rails user_summary:summary >> /var/log/user_summary.log 2>&1

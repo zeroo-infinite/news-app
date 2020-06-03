@@ -1,7 +1,11 @@
 module Admin
   module ArticleFilesHelper
     def is_image?(article_file)
-      image = MiniMagick::Image.new(article_file.file_url.file.file)
+      if Rails.env.production?
+        image = MiniMagick::Image.open(article_file.file_url.url)
+      else
+        image = MiniMagick::Image.open(article_file.file_url.path)
+      end
       image.valid?
     end
   end

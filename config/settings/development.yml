@@ -1,3 +1,7 @@
 smtp:
   user_name: "test@example.com"
   password: "password"
+
+sidekiq:
+  server: &elastic_cache redis://127.0.0.1:6379/0
+  client: *elastic_cache

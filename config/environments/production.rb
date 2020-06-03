@@ -109,4 +109,16 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.action_mailer.default_url_options = { host: "news-app-elb-796022831.ap-northeast-1.elb.amazonaws.com", port: 80 }
+  config.action_mailer.delivery_method = :smtp
+  # メール送信をテストするときはuser_nameに自分のGメールアドレス, passwordに自分アプリパスワードを入れてください。
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    domain: "gmail.com",
+    port: 587,
+    user_name: Settings.smtp[:user_name],
+    password: Settings.smtp[:password],
+    authentication: :login,
+    enable_starttls_auto: true
+  }
 end

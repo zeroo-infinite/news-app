@@ -6,7 +6,7 @@ preload_app true
 working_directory rails_root
 timeout 60
 # nginxを使用するための設定
-listen "/tmp/sockets/unicorn.sock"
+listen File.expand_path("../../tmp/sockets/unicorn.sock", __FILE__)
 
 pid File.expand_path("../../tmp/pids/unicorn.pid", __FILE__)
 

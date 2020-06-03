@@ -1,0 +1,12 @@
+.git/
+.gitignore
+.update_lock
+.htpasswd
+vendor/
+.bundle/
+tmp/
+log/
+public/uploads
+spec/
+test/
+node_modules/

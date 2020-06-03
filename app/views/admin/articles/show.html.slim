@@ -10,5 +10,8 @@
         h4.font-weight-bold
           = @article.title
         .font-italic
-          p 公開日：#{ l @article.released_at, format: :date }
+          - if @article.released_at?
+            p 公開日：#{ l @article.released_at, format: :date }
+          - else
+            p 公開日未定
       .news-content = simple_format(@article.content)
